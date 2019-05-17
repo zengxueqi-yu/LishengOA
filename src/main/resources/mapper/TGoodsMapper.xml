@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lisheng.july.dao.UserDao" >
+    <!-- 这儿定义一个resultMap -->
+    <resultMap type="com.lisheng.july.entity.TGoods" id="TGoodsMap">
+        <id property="id" column="id"/>
+        <result property="goodsname" column="goodsname"/>
+        <result property="specifications" column="specifications"/>
+        <result property="goodsversion" column="goodsversion"/>
+        <result property="price" column="price"/>
+        <result property="count"  column="count"/>
+        <result property="remarks"  column="remarks"/>
+    </resultMap>
+
+    <select id="getGoodsList" resultMap="TGoodsMap" parameterType="java.util.Map">
+        select
+        id,
+        goodsname,
+        specifications,
+        goodsversion,
+        price,
+        count,
+        remarks
+        from t_goods where
+        <if test="goodsname != null and goodsname != ''">
+            goodsname like CONCAT('%', '${goodsname}', '%')
+        </if>
+        order by sort desc
+    </select>
+</mapper>
