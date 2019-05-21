@@ -35,6 +35,7 @@
         <druid.version>1.0.2</druid.version>
         <guava.version>17.0</guava.version>
         <quartz.version>2.3.0</quartz.version>
+        <docker.image.prefix>springboot</docker.image.prefix>
     </properties>
 
     <repositories>
@@ -291,7 +292,7 @@
                 <artifactId>docker-maven-plugin</artifactId>
                 <version>0.4.13</version>
                 <configuration>
-                    <!--<imageName>${docker.image.prefix}/${project.artifactId}</imageName>-->
+                    <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
                     <dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>
                     <resources>
                         <resource>
